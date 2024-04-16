@@ -8,8 +8,7 @@ namespace PROG6221POE
 {
     class RecipeManager
     {
-
-        //Declaring variables
+        // Declaring variables
         private List<Ingredient> ingredients;
         private List<Step> steps;
         private double scaleFactor = 1.0;
@@ -22,45 +21,40 @@ namespace PROG6221POE
 
         public void AddIngredient(string name, double quantity, string unit)
         {
-
-            //new ingredient object added to ingredients list
+            // new ingredient object added to ingredients list
             ingredients.Add(new Ingredient { Name = name, Quantity = quantity, Unit = unit });
         }
 
         public void AddStep(string description)
         {
-
-            //new step object to steps list
+            // new step object to steps list
             steps.Add(new Step { Description = description });
         }
 
         public void ScaleRecipe(double factor)
         {
-
-            //checks if scale factor is valid = postive number
+            // checks if scale factor is valid = positive number
             if (factor <= 0)
             {
                 Console.WriteLine("Invalid scale factor. The scale factor must be a positive number.");
                 return;
             }
 
-            //set scale factor, update ingredient quantities
+            // set scale factor, update ingredient quantities
             scaleFactor = factor;
             UpdateIngredientQuantities();
         }
 
         public void ResetRecipe()
         {
-
-            //reset scale facator to 1.0, update ingredient quantities
+            // reset scale factor to 1.0, update ingredient quantities
             scaleFactor = 1.0;
             UpdateIngredientQuantities();
         }
 
         public void ClearRecipe()
         {
-
-            //clear ingredients and steps list, reset scale factor to 1.0
+            // clear ingredients and steps list, reset scale factor to 1.0
             ingredients.Clear();
             steps.Clear();
             scaleFactor = 1.0;
@@ -68,8 +62,7 @@ namespace PROG6221POE
 
         private void UpdateIngredientQuantities()
         {
-
-            //go through ingredients list, update quantities based on scale factor
+            // go through ingredients list, update quantities based on scale factor
             foreach (var ingredient in ingredients)
             {
                 ingredient.Quantity *= scaleFactor;
@@ -81,7 +74,7 @@ namespace PROG6221POE
 
             Console.ForegroundColor = ConsoleColor.Green;
 
-            //displays the ingredients, steps, and current scale factor
+            // displays the ingredients, steps, and current scale factor
             Console.WriteLine("Ingredients:");
             foreach (var ingredient in ingredients)
             {
@@ -101,15 +94,13 @@ namespace PROG6221POE
 
         public int GetIngredientCount()
         {
-
-            //returns number of ingredients in recipe
+            // returns number of ingredients in recipe
             return ingredients.Count;
         }
 
         public int GetStepCount()
         {
-
-            //returns number of steps in recipe
+            // returns number of steps in recipe
             return steps.Count;
         }
     }
