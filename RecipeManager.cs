@@ -86,7 +86,7 @@ namespace PROG6221POE
             {
                 Console.WriteLine($"{i + 1}. {steps[i].Description}");
             }
-            
+
             Console.WriteLine($"\nScale Factor: {scaleFactor}");
 
             Console.ResetColor();
@@ -103,5 +103,5 @@ namespace PROG6221POE
             // returns number of steps in recipe
             return steps.Count;
         }
-    }
+    } 
 }
