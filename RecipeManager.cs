@@ -79,6 +79,8 @@ namespace PROG6221POE
         public void DisplayRecipe()
         {
 
+            Console.ForegroundColor = ConsoleColor.Green;
+
             //displays the ingredients, steps, and current scale factor
             Console.WriteLine("Ingredients:");
             foreach (var ingredient in ingredients)
@@ -93,6 +95,8 @@ namespace PROG6221POE
             }
 
             Console.WriteLine($"\nScale Factor: {scaleFactor}");
+
+            Console.ResetColor();
         }
 
         public int GetIngredientCount()
