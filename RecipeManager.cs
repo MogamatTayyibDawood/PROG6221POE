@@ -70,7 +70,7 @@ namespace PROG6221POE
         }
 
         public void DisplayRecipe()
-        {
+        { 
 
             Console.ForegroundColor = ConsoleColor.Green;
 
