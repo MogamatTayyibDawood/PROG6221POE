@@ -149,6 +149,7 @@ namespace PROG6221POE
                         Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
+            
 
                 // makes sure user input is spaced nicely from each other
                 Console.WriteLine();
