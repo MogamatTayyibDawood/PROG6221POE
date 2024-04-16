@@ -59,7 +59,7 @@ namespace PROG6221POE
             steps.Clear();
             scaleFactor = 1.0;
         }
-
+        
         private void UpdateIngredientQuantities()
         {
             // go through ingredients list, update quantities based on scale factor
