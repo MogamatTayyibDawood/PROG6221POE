@@ -43,7 +43,7 @@ namespace PROG6221POE
             // set scale factor, update ingredient quantities
             scaleFactor = factor;
             UpdateIngredientQuantities();
-        }
+        } 
 
         public void ResetRecipe()
         {
@@ -89,7 +89,7 @@ namespace PROG6221POE
 
             Console.WriteLine($"\nScale Factor: {scaleFactor}");
 
-            Console.ResetColor();
+            Console.ResetColor(); 
         } 
 
         public int GetIngredientCount()
