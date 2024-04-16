@@ -80,7 +80,7 @@ namespace PROG6221POE
             {
                 Console.WriteLine($"{ingredient.Quantity:F2} {ingredient.Unit} of {ingredient.Name}");
             }
-
+        
             Console.WriteLine("\nSteps:");
             for (int i = 0; i < steps.Count; i++)
             {
