@@ -73,7 +73,7 @@ namespace PROG6221POE
         {
 
             Console.ForegroundColor = ConsoleColor.Green;
-
+            
             // displays the ingredients, steps, and current scale factor
             Console.WriteLine("Ingredients:");
             foreach (var ingredient in ingredients)
