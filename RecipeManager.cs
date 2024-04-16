@@ -29,7 +29,7 @@ namespace PROG6221POE
         {
             // new step object to steps list
             steps.Add(new Step { Description = description });
-        }
+        } 
 
         public void ScaleRecipe(double factor)
         {
