@@ -38,7 +38,7 @@ namespace PROG6221POE
             {
                 Console.WriteLine("Invalid scale factor. The scale factor must be a positive number.");
                 return;
-            }
+            } 
 
             // set scale factor, update ingredient quantities
             scaleFactor = factor;
@@ -73,14 +73,14 @@ namespace PROG6221POE
         {
 
             Console.ForegroundColor = ConsoleColor.Green;
-            
+
             // displays the ingredients, steps, and current scale factor
             Console.WriteLine("Ingredients:");
             foreach (var ingredient in ingredients)
             {
                 Console.WriteLine($"{ingredient.Quantity:F2} {ingredient.Unit} of {ingredient.Name}");
             }
-        
+
             Console.WriteLine("\nSteps:");
             for (int i = 0; i < steps.Count; i++)
             {
@@ -90,7 +90,7 @@ namespace PROG6221POE
             Console.WriteLine($"\nScale Factor: {scaleFactor}");
 
             Console.ResetColor();
-        }
+        } 
 
         public int GetIngredientCount()
         {
