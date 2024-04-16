@@ -23,7 +23,7 @@ namespace PROG6221POE
         {
             // new ingredient object added to ingredients list
             ingredients.Add(new Ingredient { Name = name, Quantity = quantity, Unit = unit });
-        }
+        } 
 
         public void AddStep(string description)
         {
