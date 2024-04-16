@@ -38,7 +38,7 @@ namespace PROG6221POE
             {
                 Console.WriteLine("Invalid scale factor. The scale factor must be a positive number.");
                 return;
-            } 
+            }
 
             // set scale factor, update ingredient quantities
             scaleFactor = factor;
@@ -50,7 +50,7 @@ namespace PROG6221POE
             // reset scale factor to 1.0, update ingredient quantities
             scaleFactor = 1.0;
             UpdateIngredientQuantities();
-        }
+        } 
 
         public void ClearRecipe()
         {
