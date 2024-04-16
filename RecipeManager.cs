@@ -70,7 +70,7 @@ namespace PROG6221POE
         }
 
         public void DisplayRecipe()
-        { 
+        {
 
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -79,7 +79,7 @@ namespace PROG6221POE
             foreach (var ingredient in ingredients)
             {
                 Console.WriteLine($"{ingredient.Quantity:F2} {ingredient.Unit} of {ingredient.Name}");
-            }
+            } 
 
             Console.WriteLine("\nSteps:");
             for (int i = 0; i < steps.Count; i++)
