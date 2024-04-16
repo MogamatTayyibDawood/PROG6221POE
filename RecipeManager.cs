@@ -86,7 +86,7 @@ namespace PROG6221POE
             {
                 Console.WriteLine($"{i + 1}. {steps[i].Description}");
             }
-
+            
             Console.WriteLine($"\nScale Factor: {scaleFactor}");
 
             Console.ResetColor();
