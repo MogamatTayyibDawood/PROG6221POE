@@ -27,7 +27,7 @@ namespace PROG6221POE
             if (recipe != null) //if recipe is found
             {
                 recipe.AddIngredient(ingredientName, quantity, unit, calories, foodGroup);
-                recipe.CalculateTotalCalories(); //calculate total calories of the recipe
+                recipe.CalculateTotalCalories(); //calculate total calories of the recipe.
                 if (recipe.TotalCalories > 300) //if total calories exceed 300
                 {
                     
