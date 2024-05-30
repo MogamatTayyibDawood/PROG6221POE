@@ -5,7 +5,7 @@ namespace PROG6221POE
 {
     public class Recipe
     {
-        public string Name { get; set; } //property to store the name of the recipe
+        public string Name { get; set; } //property to store the name of the recipe.
         public List<Ingredient> Ingredients { get; set; } //List to store the ingredients of the recipe
         public List<Step> Steps { get; set; } //List to store the steps of the recipe
         public double TotalCalories { get; set; } //property to store total calories of the recipe
