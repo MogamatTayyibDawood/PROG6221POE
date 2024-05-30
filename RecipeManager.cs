@@ -41,7 +41,7 @@ namespace PROG6221POE
         }
 
         
-        public void DisplayRecipes() // Method to display all recipes in alphabetical order
+        public void DisplayRecipes() // Method to display all recipes in alphabetical order.
         {
             var sortedRecipes = recipes.OrderBy(r => r.Name).ToList(); //sorting recipes by name
             foreach (var recipe in sortedRecipes)
