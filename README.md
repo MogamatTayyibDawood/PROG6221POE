@@ -8,6 +8,20 @@
 
 This is a standalone command-line application developed in C# using Visual Studio that allows users to manage recipes. The application includes features for adding ingredients, adding steps, displaying recipes, scaling recipes, resetting recipes, and clearing recipes. It also includes functionality for tracking calorie content and food groups for each ingredient.
 
+
+Based on the lecturer’s feedback, a couple of changes were made to the codebase. The comments received were as follows:
+
+1. **Make sure that the units of measurement are changed correctly when scaling.**
+2. **Implement a function to reset the scaled recipe back to the original values.**
+3. **Make sure that the user is asked to confirm before clearing the data.**
+4. **Add more meaningful comments.**
+
+Firstly, the `Ingredient` class was augmented with a method to reset the quantity of an ingredient back to its original value. This addition enables users to revert ingredient quantities after scaling. Additionally, the `RecipeManager` class now includes confirmation prompts before clearing data, enhancing user experience, and preventing accidental data loss. Moreover, meaningful comments were added throughout the codebase to improve readability and maintainability. These changes align with the objective of implementing internationally acceptable coding standards, ensuring clarity in variable names, methods, and overall programming logic.
+
+--- 
+
+You can place this content in the README file after the introduction and before the section on "Prerequisites." It provides a succinct overview of the changes made based on the feedback received from your lecturer.
+
 ## Prerequisites
 
 - Microsoft Visual Studio
