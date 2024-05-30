@@ -95,7 +95,7 @@ namespace PROG6221POE
     
         static void RecipeExceedsCaloriesHandler(Recipe recipe)  //Handler for when recipe exceeds 300 calories
         {
-            Console.WriteLine($"Warning: {recipe.Name} exceeds 300 calories!"); //displays warning message
+            Console.WriteLine($"Warning: {recipe.Name} exceeds 300 calories!"); //displays warning message.
         }
     }
 }
