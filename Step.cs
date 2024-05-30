@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PROG6221POE
 {
-    class Step
+   public class Step 
     {
-        public string Description { get; set; }
+        public string Description { get; set; } //defining property
     }
 }
+//------------------------------------------...ooo000 END OF FILE 000ooo...------------------------------------------------------//

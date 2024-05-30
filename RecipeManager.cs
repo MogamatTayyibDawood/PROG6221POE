@@ -1,107 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PROG6221POE
 {
-    class RecipeManager
+    public class RecipeManager
     {
-        // Declaring variables
-        private List<Ingredient> ingredients;
-        private List<Step> steps;
-        private double scaleFactor = 1.0;
+        public List<Recipe> recipes = new List<Recipe>();
 
-        public RecipeManager()
-        {
-            ingredients = new List<Ingredient>();
-            steps = new List<Step>();
-        }
-
-        public void AddIngredient(string name, double quantity, string unit)
-        {
-            // new ingredient object added to ingredients list
-            ingredients.Add(new Ingredient { Name = name, Quantity = quantity, Unit = unit });
-        } 
-
-        public void AddStep(string description)
-        {
-            // new step object to steps list
-            steps.Add(new Step { Description = description });
-        } 
-
-        public void ScaleRecipe(double factor)
-        {
-            // checks if scale factor is valid = positive number
-            if (factor <= 0)
-            {
-                Console.WriteLine("Invalid scale factor. The scale factor must be a positive number.");
-                return;
-            }
-
-            // set scale factor, update ingredient quantities
-            scaleFactor = factor;
-            UpdateIngredientQuantities();
-        } 
-
-        public void ResetRecipe()
-        {
-            // reset scale factor to 1.0, update ingredient quantities
-            scaleFactor = 1.0;
-            UpdateIngredientQuantities();
-        } 
-
-        public void ClearRecipe()
-        {
-            // clear ingredients and steps list, reset scale factor to 1.0
-            ingredients.Clear();
-            steps.Clear();
-            scaleFactor = 1.0;
-        }
         
-        private void UpdateIngredientQuantities()
+        public delegate void RecipeExceedsCaloriesHandler(Recipe recipe); // Delegate to notify when recipe exceeds 300 calories
+
+        
+        public event RecipeExceedsCaloriesHandler RecipeExceedsCalories; // Event to subscribe to when a recipe exceeds 300 calories
+
+        
+        public void AddRecipe(string name) // Method to add a recipe
         {
-            // go through ingredients list, update quantities based on scale factor
-            foreach (var ingredient in ingredients)
+            recipes.Add(new Recipe(name));
+        }
+
+        
+        public void AddIngredientToRecipe(string recipeName, string ingredientName, double quantity, string unit, double calories, string foodGroup) // Method to add an ingredient to a recipe
+        {
+            Recipe recipe = recipes.Find(r => r.Name == recipeName); //find recipe by name
+            if (recipe != null) //if recipe is found
             {
-                ingredient.Quantity *= scaleFactor;
+                recipe.AddIngredient(ingredientName, quantity, unit, calories, foodGroup);
+                recipe.CalculateTotalCalories(); //calculate total calories of the recipe
+                if (recipe.TotalCalories > 300) //if total calories exceed 300
+                {
+                    
+                    RecipeExceedsCalories?.Invoke(recipe); // Notify if recipe exceeds 300 calories
+                }
+            }
+            else //if recipe not found
+            {
+                Console.WriteLine("Recipe not found."); //displaying a message for when not found
             }
         }
 
-        public void DisplayRecipe()
+        
+        public void DisplayRecipes() // Method to display all recipes in alphabetical order
         {
-
-            Console.ForegroundColor = ConsoleColor.Green;
-
-            // displays the ingredients, steps, and current scale factor
-            Console.WriteLine("Ingredients:");
-            foreach (var ingredient in ingredients)
+            var sortedRecipes = recipes.OrderBy(r => r.Name).ToList(); //sorting recipes by name
+            foreach (var recipe in sortedRecipes)
             {
-                Console.WriteLine($"{ingredient.Quantity:F2} {ingredient.Unit} of {ingredient.Name}");
-            } 
-
-            Console.WriteLine("\nSteps:");
-            for (int i = 0; i < steps.Count; i++)
-            {
-                Console.WriteLine($"{i + 1}. {steps[i].Description}");
+                Console.WriteLine(recipe.Name); //displaying name of recipe
             }
-
-            Console.WriteLine($"\nScale Factor: {scaleFactor}");
-
-            Console.ResetColor(); 
-        } 
-
-        public int GetIngredientCount()
-        {
-            // returns number of ingredients in recipe
-            return ingredients.Count;
         }
 
-        public int GetStepCount()
+        
+        public void DisplayRecipe(string name) // Method to display a recipe
         {
-            // returns number of steps in recipe
-            return steps.Count;
+            Recipe recipe = recipes.Find(r => r.Name == name);
+            if (recipe != null)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Recipe: {recipe.Name}");
+
+                
+                Console.WriteLine("Ingredients:"); // Display ingredients
+                foreach (var ingredient in recipe.Ingredients)
+                {
+                    Console.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name} ({ingredient.Calories} calories, {ingredient.FoodGroup})");
+                }
+
+                
+                Console.WriteLine("\nSteps:"); // Display steps
+                foreach (var step in recipe.Steps)
+                {
+                    Console.WriteLine(step.Description);
+                }
+
+                Console.WriteLine($"Total Calories: {recipe.TotalCalories}");
+
+                Console.ResetColor();
+            }
+            else //if recipe is not found
+            {
+                Console.WriteLine("Recipe not found."); //displaying message
+            }
         }
-    } 
+
+        
+        public List<Recipe> GetRecipes() //method to get all recipes
+        {
+            return recipes;
+        }
+
+        public Recipe GetRecipeByName(string name) //method to get recipe by name
+        {
+            return recipes.Find(r => r.Name == name);
+        }
+
+        public List<Recipe> GetSortedRecipes() //method to get all recipes by name
+        {
+            return recipes.OrderBy(r => r.Name).ToList();
+        }
+    }
 }
+//------------------------------------------...ooo000 END OF FILE 000ooo...------------------------------------------------------//

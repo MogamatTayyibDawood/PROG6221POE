@@ -7,154 +7,96 @@
 // https://www.tutorialspoint.com/cprogramming/index.htm
 // https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
 
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PROG6221POE
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            RecipeManager recipeManager = new RecipeManager();
+            RecipeManager recipeManager = new RecipeManager(); //craeting instance of RecipeManager
+            recipeManager.RecipeExceedsCalories += RecipeExceedsCaloriesHandler; //subscribing to RecipeExceedsCalories event
 
-            // Loop that runs till user exits app
-            while (true)
+            while (true) //Starting a loop
             {
-                // Different options for user
-                Console.WriteLine("Welcome to the Recipe App");
-                Console.WriteLine("Select an option:");
-                Console.WriteLine("1. Add ingredients");
-                Console.WriteLine("2. Add steps");
-                Console.WriteLine("3. Display Recipe");
-                Console.WriteLine("4. Scale Recipe");
-                Console.WriteLine("5. Reset Recipe");
-                Console.WriteLine("6. Clear Recipe");
-                Console.WriteLine("7. Exit");
+                Console.WriteLine("Welcome to the Recipe App"); // displaying a welcome message
+                Console.WriteLine("Select an option:"); //telling user to select an option
+                Console.WriteLine("1. Add Recipe"); //1st option is to Add Recipe
+                Console.WriteLine("2. Add Ingredients to Recipe"); //2nd option is to Add ingredients to recipe
+                Console.WriteLine("3. Display Recipes"); //3rd option is to Display Recipes
+                Console.WriteLine("4. Display Recipe"); //4th option is to Display Recipe
+                Console.WriteLine("5. Exit"); //5th option is to Exit
 
-                int choice;
-                if (!int.TryParse(Console.ReadLine(), out choice))
+                if (!int.TryParse(Console.ReadLine(), out int choice)) // reads user input and parsing it as an integer
                 {
-                    // if user leaves empty or invalid input, then:
-                    Console.WriteLine("Invalid choice. Please try again.");
+                    Console.WriteLine("Invalid choice. Please try again."); //displays error message for invalid input
                     continue;
                 }
 
-                switch (choice)
+                switch (choice) //switches choices based on users choice
                 {
-                    case 1:
-                        Console.Write("Enter the number of ingredients: ");
-                        int ingredientCount;
-                        if (!int.TryParse(Console.ReadLine(), out ingredientCount) || ingredientCount <= 0)
+                    case 1: // option 1
+                        Console.Write("Enter the name of the recipe: "); //prompts user to enter naem of recipe
+                        string recipeName = Console.ReadLine();
+                        recipeManager.AddRecipe(recipeName);
+                        break;
+
+                    case 2: //option 2
+                        Console.Write("Enter the name of the recipe: "); //prompts user to enter name of recipe
+                        string recipeToAddTo = Console.ReadLine();
+                        Console.Write("Enter the name of the ingredient: "); //prompts user to enter name of ingredient
+                        string ingredientName = Console.ReadLine();
+                        Console.Write("Enter the quantity of the ingredient: "); //prompts user to enter quantity of ingredient
+                        if (!double.TryParse(Console.ReadLine(), out double quantity))
                         {
-                            Console.WriteLine("Invalid number of ingredients. Please enter a positive integer.");
+                            Console.WriteLine("Invalid quantity. Please try again.");
                             continue;
                         }
-                        for (int i = 0; i < ingredientCount; i++)
+                        Console.Write("Enter the unit of the ingredient: "); //prompts user to enter unit of ingredient
+                        string unit = Console.ReadLine();
+                        Console.Write("Enter the calories of the ingredient: "); //prompts user to enter the calories of ingredient
+                        if (!double.TryParse(Console.ReadLine(), out double calories))
                         {
-                            Console.Write("Enter name of ingredient: ");
-                            string ingName = Console.ReadLine();
-                            Console.Write("Enter quantity of ingredient: ");
-                            if (!double.TryParse(Console.ReadLine(), out double ingQuantity))
-                            {
-                                // quantity is invalid, not double:
-                                Console.WriteLine("Invalid quantity. Please try again.");
-                                i--; // Decrement i to allow re-entry of the same ingredient.
-                                continue;
-                            }
-                            Console.Write("Enter unit of ingredient: ");
-                            string ingUnit = Console.ReadLine();
-                            recipeManager.AddIngredient(ingName, ingQuantity, ingUnit);
-                        }
-                        break;
-
-                    case 2:
-                        Console.Write("Enter the number of steps: ");
-                        int stepCount;
-                        if (!int.TryParse(Console.ReadLine(), out stepCount) || stepCount <= 0)
-                        {
-                            Console.WriteLine("Invalid number of steps. Please enter a positive integer.");
+                            Console.WriteLine("Invalid calories. Please try again.");
                             continue;
                         }
-                        for (int i = 0; i < stepCount; i++)
-                        {
-                            Console.Write("Enter step description: ");
-                            string stepDescrip = Console.ReadLine();
-                            recipeManager.AddStep(stepDescrip);
-                        }
+                        Console.Write("Enter the food group of the ingredient: "); //prompts user to enter food group of ingredient
+                        string foodGroup = Console.ReadLine();
+                        recipeManager.AddIngredientToRecipe(recipeToAddTo, ingredientName, quantity, unit, calories, foodGroup); //adding ingredeint to recipe
                         break;
 
-                    case 3:
-                        // displays recipe, checks first if recipe is empty
-                        if (recipeManager.GetIngredientCount() == 0 || recipeManager.GetStepCount() == 0)
-                        {
-                            Console.WriteLine("The recipe is empty. Please add ingredients and steps first.");
-                        }
-                        else
-                        {
-                            // line to actually display recipe
-                            recipeManager.DisplayRecipe();
-                        }
+
+                    case 3: //option 3
+                        Console.WriteLine("Recipes:"); //shows message that recipes will be displayed
+                        recipeManager.DisplayRecipes();
                         break;
 
-                    case 4:
-                        // scaling for recipe, checks first if recipe is empty
-                        if (recipeManager.GetIngredientCount() == 0 || recipeManager.GetStepCount() == 0)
-                        {
-                            Console.WriteLine("The recipe is empty. Please add ingredients and steps first.");
-                            continue;
-                        }
-
-                        Console.Write("Enter the scale factor (0.5, 2, 3, etc.): ");
-                        if (!double.TryParse(Console.ReadLine(), out double scaleFactor) || scaleFactor <= 0)
-                        {
-
-                            // if scaling invalid, this message:
-                            Console.WriteLine("Invalid scale factor. Please try again.");
-                            continue;
-                        }
-                        recipeManager.ScaleRecipe(scaleFactor);
+                    case 4: // option 4
+                        Console.Write("Enter the name of the recipe to display: "); //prompts user to enter name of recipe to display
+                        string recipeToDisplay = Console.ReadLine();
+                        recipeManager.DisplayRecipe(recipeToDisplay);
                         break;
 
-                    case 5:
-                        // resetting the recipe, checks first if recipe is empty
-                        if (recipeManager.GetIngredientCount() == 0 || recipeManager.GetStepCount() == 0)
-                        {
-                            Console.WriteLine("The recipe is empty. There's nothing to reset.");
-                        }
-                        else
-                        {
-
-                            // line to reset recipe
-                            recipeManager.ResetRecipe();
-                        }
-                        break;
-
-                    case 6:
-                        // clear recipe
-                        recipeManager.ClearRecipe();
-                        Console.WriteLine("Recipe cleared.");
-                        break;
-
-                    case 7:
-                        // exit application
-                        return;
+                    case 5: //option 5
+                        return; //exit program
 
                     default:
-                        // this line handles any invalid choices by user
-                        Console.WriteLine("Invalid choice. Please try again.");
+                        Console.WriteLine("Invalid choice. Please try again."); //error message ofr invalid input
                         break;
                 }
 
-
-                // makes sure user input is spaced nicely from each other
                 Console.WriteLine();
             }
-        
+        }
+
+    
+        static void RecipeExceedsCaloriesHandler(Recipe recipe)  //Handler for when recipe exceeds 300 calories
+        {
+            Console.WriteLine($"Warning: {recipe.Name} exceeds 300 calories!"); //displays warning message
         }
     }
 }
+//------------------------------------------...ooo000 END OF FILE 000ooo...------------------------------------------------------//
