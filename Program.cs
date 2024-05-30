@@ -32,7 +32,7 @@ namespace PROG6221POE
 
                 if (!int.TryParse(Console.ReadLine(), out int choice)) // reads user input and parsing it as an integer
                 {
-                    Console.WriteLine("Invalid choice. Please try again."); //displays error message for invalid input
+                    Console.WriteLine("Invalid choice. Please try again."); //displays error message for invalid input.
                     continue;
                 }
 
