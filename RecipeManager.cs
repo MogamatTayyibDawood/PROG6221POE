@@ -15,7 +15,7 @@ namespace PROG6221POE
         public event RecipeExceedsCaloriesHandler RecipeExceedsCalories; // Event to subscribe to when a recipe exceeds 300 calories
 
         
-        public void AddRecipe(string name) // Method to add a recipe
+        public void AddRecipe(string name) // Method to add a recipe.
         {
             recipes.Add(new Recipe(name));
         }
