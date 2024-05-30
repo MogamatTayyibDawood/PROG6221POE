@@ -63,7 +63,7 @@ namespace PROG6221POE
                             Console.WriteLine("Invalid calories. Please try again.");
                             continue;
                         }
-                        Console.Write("Enter the food group of the ingredient: "); //prompts user to enter food group of ingredient
+                        Console.Write("Enter the food group of the ingredient: "); //prompts user to enter food group of ingredient.
                         string foodGroup = Console.ReadLine();
                         recipeManager.AddIngredientToRecipe(recipeToAddTo, ingredientName, quantity, unit, calories, foodGroup); //adding ingredeint to recipe
                         break;
