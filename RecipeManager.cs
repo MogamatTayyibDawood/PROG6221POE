@@ -31,7 +31,7 @@ namespace PROG6221POE
                 if (recipe.TotalCalories > 300) //if total calories exceed 300
                 {
                     
-                    RecipeExceedsCalories?.Invoke(recipe); // Notify if recipe exceeds 300 calories
+                    RecipeExceedsCalories?.Invoke(recipe); // Notify if recipe exceeds 300 calories.
                 }
             }
             else //if recipe not found
