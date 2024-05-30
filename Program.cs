@@ -81,10 +81,21 @@ namespace PROG6221POE
                         break;
 
                     case 5: //option 5
-                        return; //exit program
+                       
+                        Console.WriteLine("Are you sure you want to exit? (Y/N)"); // Ask for confirmation before exiting.
+                        string exitConfirmation = Console.ReadLine().ToUpper();
+                        if (exitConfirmation == "Y")
+                            return;
+                        else if (exitConfirmation == "N")
+                            break;
+                        else
+                        {
+                            Console.WriteLine("Invalid input. Please try again.");
+                            continue;
+                        }
 
                     default:
-                        Console.WriteLine("Invalid choice. Please try again."); //error message ofr invalid input
+                        Console.WriteLine("Invalid choice. Please try again.");
                         break;
                 }
 
