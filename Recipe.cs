@@ -33,5 +33,17 @@ namespace PROG6221POE
         }
     }
 
+
+    public void ResetRecipe() // Function to reset the scaled recipe back to the original values.
+    {
+
+        foreach (var ingredient in Ingredients) // Reset all ingredient quantities to their original values
+        {
+            ingredient.ResetQuantity();
+        }
+
+
+    }
 }
+
 //------------------------------------------...ooo000 END OF FILE 000ooo...-------------------------------------------------------//
