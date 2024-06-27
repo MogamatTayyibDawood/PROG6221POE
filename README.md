@@ -79,7 +79,19 @@ When the application starts, you will see the following menu options:
 4. **Display Recipe**
    - Prompts the user to enter the name of a recipe and then displays the details of the selected recipe, including ingredients and steps.
 
-5. **Exit**
+5. **Add Steps to Recipe**
+   - Prompts the user to enter the name of the recipe, then the description of each step to be added.
+
+6. **Scale Recipe**
+   - Prompts the user to enter the name of the recipe and the scaling factor. The quantities of all ingredients in the recipe will be scaled by the specified factor.
+
+7. **Reset Recipe**
+   - Prompts the user to enter the name of the recipe. The quantities of all ingredients in the recipe will be reset to their original values.
+
+8. **Clear Data of Recipe**
+   - Prompts the user to enter the name of the recipe to clear the data. Confirmation will be asked before clearing the data.
+
+9. **Exit**
    - Exits the application.
 
 ## Features
@@ -92,7 +104,10 @@ When the application starts, you will see the following menu options:
    - The number of calories.
    - The food group the ingredient belongs to.
 6. **Total Calorie Calculation**: The software calculates and displays the total calories of all the ingredients in a recipe.
-7. **Calorie Notification**: The software notifies the user when the total calories of a recipe exceed 300.
+7. **Calorie Notification**: The software notifies the user when the total calories of a recipe exceed certain thresholds:
+   - If total calories < 200: "This recipe is low in calories, suitable for a snack."
+   - If total calories are between 200 and 500: "This recipe has moderate calories, suitable for a balanced meal."
+   -If total calories > 500: "This recipe is high in calories and should be consumed sparingly."
 
 ## Food Groups
 
