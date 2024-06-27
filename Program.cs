@@ -202,7 +202,7 @@ namespace PROG6221POE
             string message = $"Warning: {recipe.Name} exceeds 300 calories!";
             if (recipe.TotalCalories < 200)
             {
-                message += " This recipe is low in calories, suitable for a snack.";
+                message += " This recipe is low in calories, suitable for a snack."; //calorie warning messages
             }
             else if (recipe.TotalCalories >= 200 && recipe.TotalCalories <= 500)
             {
