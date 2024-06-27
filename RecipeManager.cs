@@ -6,97 +6,87 @@ namespace PROG6221POE
 {
     public class RecipeManager
     {
-        public List<Recipe> recipes = new List<Recipe>();
+        private List<Recipe> recipes;  // List to store recipes
 
-        
-        public delegate void RecipeExceedsCaloriesHandler(Recipe recipe); // Delegate to notify when recipe exceeds 300 calories
-
-        
-        public event RecipeExceedsCaloriesHandler RecipeExceedsCalories; // Event to subscribe to when a recipe exceeds 300 calories
-
-        
-        public void AddRecipe(string name) // Method to add a recipe.
+        public RecipeManager()
         {
-            recipes.Add(new Recipe(name));
+            recipes = new List<Recipe>();  // Initialize the recipes list
         }
 
-        
-        public void AddIngredientToRecipe(string recipeName, string ingredientName, double quantity, string unit, double calories, string foodGroup) // Method to add an ingredient to a recipe
+        public delegate void RecipeExceedsCaloriesHandler(Recipe recipe);  // Delegate for the RecipeExceedsCalories event
+        public event RecipeExceedsCaloriesHandler RecipeExceedsCalories;  // Event for when a recipe exceeds calories
+
+        public void AddRecipe(string name)
         {
-            Recipe recipe = recipes.Find(r => r.Name == recipeName); //find recipe by name
-            if (recipe != null) //if recipe is found
-            {
-                recipe.AddIngredient(ingredientName, quantity, unit, calories, foodGroup);
-                recipe.CalculateTotalCalories(); //calculate total calories of the recipe.
-                if (recipe.TotalCalories > 300) //if total calories exceed 300
-                {
-                    
-                    RecipeExceedsCalories?.Invoke(recipe); // Notify if recipe exceeds 300 calories.
-                }
-            }
-            else //if recipe not found
-            {
-                Console.WriteLine("Recipe not found."); //displaying a message for when not found
-            }
+            recipes.Add(new Recipe(name));  // Add a new recipe to the list
         }
 
-        
-        public void DisplayRecipes() // Method to display all recipes in alphabetical order.
+        public void AddIngredientToRecipe(string recipeName, string ingredientName, double quantity, string unit, double calories, string foodGroup)
         {
-            var sortedRecipes = recipes.OrderBy(r => r.Name).ToList(); //sorting recipes by name
-            foreach (var recipe in sortedRecipes)
-            {
-                Console.WriteLine(recipe.Name); //displaying name of recipe
-            }
-        }
-
-        
-        public void DisplayRecipe(string name) // Method to display a recipe
-        {
-            Recipe recipe = recipes.Find(r => r.Name == name);
+            Recipe recipe = recipes.Find(r => r.Name == recipeName);  // Find the recipe by name
             if (recipe != null)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Recipe: {recipe.Name}");
+                recipe.AddIngredient(ingredientName, quantity, unit, calories, foodGroup);  // Add the ingredient to the recipe
+                recipe.CalculateTotalCalories();  // Calculate the total calories
+                if (recipe.TotalCalories > 300)
+                {
+                    RecipeExceedsCalories?.Invoke(recipe);  // Invoke the event if total calories exceed 300
+                }
+            }
+            else
+            {
+                Console.WriteLine("Recipe not found.");  // Recipe not found
+            }
+        }
 
-                
-                Console.WriteLine("Ingredients:"); // Display ingredients
+        public void DisplayRecipes()
+        {
+            var sortedRecipes = recipes.OrderBy(r => r.Name).ToList();  // Sort the recipes by name
+            foreach (var recipe in sortedRecipes)
+            {
+                Console.WriteLine(recipe.Name);  // Display each recipe name
+            }
+        }
+
+        public void DisplayRecipe(string name)
+        {
+            Recipe recipe = recipes.Find(r => r.Name == name);  // Find the recipe by name
+            if (recipe != null)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;  // Set the console text color to green
+                Console.WriteLine($"Recipe: {recipe.Name}");  // Display the recipe name
+                Console.WriteLine("Ingredients:");
                 foreach (var ingredient in recipe.Ingredients)
                 {
-                    Console.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name} ({ingredient.Calories} calories, {ingredient.FoodGroup})");
+                    Console.WriteLine($"{ingredient.Quantity} {ingredient.Unit} of {ingredient.Name} ({ingredient.Calories} calories, {ingredient.FoodGroup})");  // Display each ingredient
                 }
-
-                
-                Console.WriteLine("\nSteps:"); // Display steps
+                Console.WriteLine("\nSteps:");
                 foreach (var step in recipe.Steps)
                 {
-                    Console.WriteLine(step.Description);
+                    Console.WriteLine(step.Description);  // Display each step
                 }
-
-                Console.WriteLine($"Total Calories: {recipe.TotalCalories}");
-
-                Console.ResetColor();
+                Console.WriteLine($"Total Calories: {recipe.TotalCalories}");  // Display the total calories
+                Console.ResetColor();  // Reset the console text color
             }
-            else //if recipe is not found
+            else
             {
-                Console.WriteLine("Recipe not found."); //displaying message
+                Console.WriteLine("Recipe not found.");  // Recipe not found
             }
         }
 
-        
-        public List<Recipe> GetRecipes() //method to get all recipes
+        public void ClearData()
         {
-            return recipes;
+            recipes.Clear();  // Clear the recipes list
         }
 
-        public Recipe GetRecipeByName(string name) //method to get recipe by name
+        public List<Recipe> GetRecipes()
         {
-            return recipes.Find(r => r.Name == name);
+            return recipes;  // Return the list of recipes
         }
 
-        public List<Recipe> GetSortedRecipes() //method to get all recipes by name
+        public Recipe GetRecipeByName(string name)
         {
-            return recipes.OrderBy(r => r.Name).ToList();
+            return recipes.Find(r => r.Name == name);  // Find and return the recipe by name
         }
     }
 }
