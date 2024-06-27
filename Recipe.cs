@@ -27,7 +27,7 @@ namespace PROG6221POE
             TotalCalories = 0;  // Reset total calories
             foreach (var ingredient in Ingredients)
             {
-                TotalCalories += ingredient.Calories * ingredient.Quantity;  // Calculate total calories
+                TotalCalories += ingredient.Calories * ingredient.Quantity;  // Calculate total calories.
             }
         }
 
