@@ -5,44 +5,46 @@ namespace PROG6221POE
 {
     public class Recipe
     {
-        public string Name { get; set; } //property to store the name of the recipe.
-        public List<Ingredient> Ingredients { get; set; } //List to store the ingredients of the recipe
-        public List<Step> Steps { get; set; } //List to store the steps of the recipe
-        public double TotalCalories { get; set; } //property to store total calories of the recipe
+        public string Name { get; set; }  // Property for the recipe name
+        public List<Ingredient> Ingredients { get; set; }  // List to store ingredients
+        public List<Step> Steps { get; set; }  // List to store steps
+        public double TotalCalories { get; set; }  // Property for total calories
 
         public Recipe(string name)
         {
-            Name = name;
-            Ingredients = new List<Ingredient>();
-            Steps = new List<Step>();
+            Name = name;  // Initialize the recipe name
+            Ingredients = new List<Ingredient>();  // Initialize the ingredients list
+            Steps = new List<Step>();  // Initialize the steps list
         }
 
         public void AddIngredient(string name, double quantity, string unit, double calories, string foodGroup)
         {
-            Ingredients.Add(new Ingredient { Name = name, Quantity = quantity, Unit = unit, Calories = calories, FoodGroup = foodGroup });
+            Ingredients.Add(new Ingredient(name, quantity, unit, calories, foodGroup));  // Add a new ingredient to the list
         }
 
-        public void CalculateTotalCalories() //method to calculate the tota; calories of recipe
+        public void CalculateTotalCalories()
         {
-            double total = 0; // variable to stpre the total calories
-            foreach (var ingredient in Ingredients) //loop to go through each ingredient in recipe
+            TotalCalories = 0;  // Reset total calories
+            foreach (var ingredient in Ingredients)
             {
-                total += ingredient.Calories * ingredient.Quantity; //adding calories of each ingredient to the total
+                TotalCalories += ingredient.Calories * ingredient.Quantity;  // Calculate total calories
             }
-            TotalCalories = total; //Assigning the total calories to the TotalCalories property
         }
 
-
-
-        public void ResetRecipe() // Function to reset the scaled recipe back to the original values.
+        public void ScaleRecipe(double factor)
         {
-
-            foreach (var ingredient in Ingredients) // Reset all ingredient quantities to their original values
+            foreach (var ingredient in Ingredients)
             {
-                ingredient.ResetQuantity();
+                ingredient.Quantity *= factor;  // Scale the quantity of each ingredient
             }
+        }
 
-
+        public void ResetRecipe()
+        {
+            foreach (var ingredient in Ingredients)
+            {
+                ingredient.ResetQuantity();  // Reset the quantity of each ingredient to the original value
+            }
         }
     }
 }
