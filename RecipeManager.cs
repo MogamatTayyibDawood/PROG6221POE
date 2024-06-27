@@ -14,7 +14,7 @@ namespace PROG6221POE
         }
 
         public delegate void RecipeExceedsCaloriesHandler(Recipe recipe);  // Delegate for the RecipeExceedsCalories event
-        public event RecipeExceedsCaloriesHandler RecipeExceedsCalories;  // Event for when a recipe exceeds calories.
+        public event RecipeExceedsCaloriesHandler RecipeExceedsCalories;  // Event for when a recipe exceeds calories
 
         public void AddRecipe(string name)
         {
