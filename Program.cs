@@ -187,7 +187,7 @@ namespace PROG6221POE
         {
             Console.Write("Enter the name of the recipe: ");
             string recipeName = Console.ReadLine();
-            Recipe recipe = recipeManager.GetRecipeByName(recipeName);  // Get the recipe by name
+            Recipe recipe = recipeManager.GetRecipeByName(recipeName);  // Get the recipe by name.
             if (recipe == null)
             {
                 Console.WriteLine("Recipe not found.");
