@@ -9,18 +9,34 @@
 This is a standalone command-line application developed in C# using Visual Studio that allows users to manage recipes. The application includes features for adding ingredients, adding steps, displaying recipes, scaling recipes, resetting recipes, and clearing recipes. It also includes functionality for tracking calorie content and food groups for each ingredient.
 
 
-Based on the lecturer’s feedback, a couple of changes were made to the codebase. The comments received were as follows:
+Based on the lecturer’s feedback, several changes were made to the codebase to improve its functionality and user experience. Here is a brief overview of the feedback received and the corresponding implementations:
 
-1. **Make sure that the units of measurement are changed correctly when scaling.**
-2. **Implement a function to reset the scaled recipe back to the original values.**
-3. **Make sure that the user is asked to confirm before clearing the data.**
-4. **Add more meaningful comments.**
+1. Use Events for Calorie Warning:
 
-Firstly, the `Ingredient` class was augmented with a method to reset the quantity of an ingredient back to its original value. This addition enables users to revert ingredient quantities after scaling. Additionally, the `RecipeManager` class now includes confirmation prompts before clearing data, enhancing user experience, and preventing accidental data loss. Moreover, meaningful comments were added throughout the codebase to improve readability and maintainability. These changes align with the objective of implementing internationally acceptable coding standards, ensuring clarity in variable names, methods, and overall programming logic.
+   - Created a delegate RecipeExceedsCaloriesHandler and an event RecipeExceedsCalories in the RecipeManager class.
+   - Subscribed to this event in the Main method of the Program class.
+   - Added a method RecipeExceedsCaloriesHandler to handle the event and display an appropriate message based on the total calories of the recipe.
 
---- 
+2. Reset Ingredient Quantities:
 
-You can place this content in the README file after the introduction and before the section on "Prerequisites." It provides a succinct overview of the changes made based on the feedback received from your lecturer.
+   - Added a private field originalQuantity in the Ingredient class to store the original quantity of each ingredient.
+   - Created a method ResetQuantity in the Ingredient class to reset the quantity to the original value.
+   - Implemented a method ResetRecipe in the Recipe class to reset all ingredients in the recipe to their original quantities.
+
+3. Recipe Scaling:
+
+   - Implemented the ScaleRecipe method in the Recipe class to scale the quantities of all ingredients by a given factor.
+   - Modified the ResetRecipe method to reset the quantities of ingredients after scaling.
+
+4. Proper Input Handling:
+
+   - Added input validation using double.TryParse to handle invalid numeric inputs and prompt the user to re-enter valid data.
+
+5. Structured Menu and User Interaction:
+
+   - Created a structured menu with clear options for different actions.
+   - Used a switch statement to handle different menu options and ensure the program behaves as expected based on user choices.
+
 
 ## Prerequisites
 
