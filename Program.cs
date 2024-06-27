@@ -191,7 +191,7 @@ namespace PROG6221POE
             if (recipe == null)
             {
                 Console.WriteLine("Recipe not found.");
-                return;  // Recipe not found, return
+                return;  // Recipe not found, return.
             }
             recipe.ResetRecipe();  // Reset the recipe
             Console.WriteLine("Recipe reset to original values.");
