@@ -32,7 +32,7 @@ namespace PROG6221POE
                 Console.WriteLine("6. Scale Recipe"); //********************
                 Console.WriteLine("7. Reset Recipe");
                 Console.WriteLine("8. Clear Data");
-                Console.WriteLine("9. Exit"); //9th option is to Exit
+                Console.WriteLine("9. Exit"); //9th option is to Exit.
 
                 if (!int.TryParse(Console.ReadLine(), out int choice))  // Try to parse user input as an integer
                 {
