@@ -43,7 +43,7 @@ namespace PROG6221POE
         {
             foreach (var ingredient in Ingredients)
             {
-                ingredient.ResetQuantity();  // Reset the quantity of each ingredient to the original value
+                ingredient.ResetQuantity();  // Reset the quantity of each ingredient to the original value.
             }
         }
     }
