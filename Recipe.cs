@@ -20,6 +20,12 @@ namespace PROG6221POE
         public void AddIngredient(string name, double quantity, string unit, double calories, string foodGroup)
         {
             Ingredients.Add(new Ingredient(name, quantity, unit, calories, foodGroup));  // Add a new ingredient to the list
+            CalculateTotalCalories();  // Recalculate total calories after adding ingredient
+        }
+
+        public void AddStep(string stepDescription)
+        {
+            Steps.Add(new Step { Description = stepDescription });  // Add a step description to the list of steps
         }
 
         public void CalculateTotalCalories()
@@ -36,6 +42,7 @@ namespace PROG6221POE
             foreach (var ingredient in Ingredients)
             {
                 ingredient.Quantity *= factor;  // Scale the quantity of each ingredient
+                CalculateTotalCalories();  // Recalculate total calories after scaling
             }
         }
 
@@ -44,8 +51,8 @@ namespace PROG6221POE
             foreach (var ingredient in Ingredients)
             {
                 ingredient.ResetQuantity();  // Reset the quantity of each ingredient to the original value.
+                CalculateTotalCalories();  // Recalculate total calories after resetting
             }
         }
     }
 }
-//------------------------------------------...ooo000 END OF FILE 000ooo...-------------------------------------------------------//
